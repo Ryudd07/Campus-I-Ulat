@@ -1,0 +1,7 @@
+{
+  "name": "ionic-finals",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
