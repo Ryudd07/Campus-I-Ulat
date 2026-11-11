@@ -1,18 +1,16 @@
 import { signal } from '@angular/core';
 
 import type { Building, LatLng } from './models';
-import buildingsJson from './neust-buildings.json';
 
 /**
  * Map centre for NEUST Sumacab. APPROXIMATE: replace with the campus's surveyed
- * centre once the building coordinates are filled in neust-buildings.json.
+ * centre once the building coordinates are filled in src/assets/neust-buildings.json.
  */
 export const CAMPUS_CENTER: LatLng = { lat: 15.4431, lng: 120.9388 };
 export const CAMPUS_ZOOM = 17;
 
-// The 53 campus buildings. Starts with the copy inside the app;
-// ReportsService.loadBuildings() replaces it with the latest list from GitHub.
-export const buildings = signal<Building[]>(buildingsJson as Building[]);
+// The 53 campus buildings, filled by ReportsService.loadBuildings() when the app opens
+export const buildings = signal<Building[]>([]);
 
 export function hasCoords(b: Building): b is Building & { lat: number; lng: number } {
   return typeof b.lat === 'number' && typeof b.lng === 'number';

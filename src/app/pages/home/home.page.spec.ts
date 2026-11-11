@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
@@ -17,7 +19,7 @@ describe('HomePage', () => {
     await Preferences.clear();
     await TestBed.configureTestingModule({
       imports: [HomePage],
-      providers: [provideRouter([]), provideIonicAngular()],
+      providers: [provideRouter([]), provideIonicAngular(), provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
     await TestBed.inject(ReportsService).init();
     fixture = TestBed.createComponent(HomePage);

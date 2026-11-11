@@ -25,7 +25,7 @@ export interface LatLng {
   lng: number;
 }
 
-/** One entry in neust-buildings.json. */
+/** One entry in src/assets/neust-buildings.json. */
 export interface Building {
   no: number;
   name: string;

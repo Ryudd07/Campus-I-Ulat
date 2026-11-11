@@ -1,4 +1,5 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { CapacitorHttp } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
 
@@ -9,8 +10,8 @@ import { seedReports } from './seed';
 // Free public test API (it accepts POSTs but does not keep them)
 const API_URL = 'https://jsonplaceholder.typicode.com/posts';
 
-// The building list, published in the project's GitHub repository
-const BUILDINGS_URL = 'https://raw.githubusercontent.com/Ryudd07/Campus-I-Ulat/main/src/app/core/neust-buildings.json';
+// The building list, bundled inside the app (works offline)
+const BUILDINGS_URL = 'assets/neust-buildings.json';
 
 // Starting values for a new report
 function emptyForm(category: Category = 'Maintenance'): ReportForm {
@@ -26,6 +27,7 @@ function emptyForm(category: Category = 'Maintenance'): ReportForm {
 
 @Injectable({ providedIn: 'root' })
 export class ReportsService {
+  http = inject(HttpClient); // inject
   reports = signal<Report[]>([]); // the student's reports (saved in Preferences)
   form = signal<ReportForm>(emptyForm()); // what is filled in on New report
 
@@ -124,18 +126,14 @@ export class ReportsService {
     this.saveReports();
   }
 
-  // ---------- Network (CapacitorHttp) ----------
+  // ---------- Network ----------
 
-  // GET the latest building list. If it fails, the copy inside the app is used.
+  // GET the building list from the file bundled in the app (no internet needed)
   loadBuildings() {
-    CapacitorHttp.get({ url: BUILDINGS_URL })
-      .then((res) => {
-        // GitHub sends the file as text, so turn it into a list
-        const list: Building[] = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
-        if (Array.isArray(list)) buildings.set(list);
-        console.log('GET Buildings:', list.length);
-      })
-      .catch((err) => console.error('GET Error:', err));
+    this.http.get<Building[]>(BUILDINGS_URL).subscribe({
+      next: (list) => buildings.set(list),
+      error: (err) => console.error('GET Error:', err),
+    });
   }
 
   // POST a copy of the report (without the photo, to keep the request small).

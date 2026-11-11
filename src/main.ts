@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { inject, provideAppInitializer } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
@@ -21,6 +22,7 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular({ mode: 'md' }),
     provideRouter(routes, withPreloading(PreloadAllModules), withComponentInputBinding()),
+    provideHttpClient(), // for the building list GET
     // Load reports, draft, lastSeen and filters from Preferences before any screen shows.
     provideAppInitializer(() => inject(ReportsService).init()),
   ],

@@ -1,6 +1,9 @@
+import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Preferences } from '@capacitor/preferences';
 
+import { buildings } from './geo';
 import { STATUSES } from './models';
 import { ReportsService } from './reports.service';
 
@@ -14,12 +17,15 @@ async function storedReports() {
 
 describe('ReportsService', () => {
   let service: ReportsService;
+  let http: HttpTestingController;
 
   beforeEach(async () => {
     // CapacitorHttp uses fetch in the browser, so fake the test API's reply
     vi.spyOn(globalThis, 'fetch').mockImplementation(async () => new Response('{}', { status: 201 }));
     await Preferences.clear();
+    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
     service = TestBed.inject(ReportsService);
+    http = TestBed.inject(HttpTestingController);
     await service.init();
     await tick();
   });
@@ -55,9 +61,11 @@ describe('ReportsService', () => {
     expect((await storedReports())[0].id).toBe(report.id);
   });
 
-  it('GETs the building list when the app opens', () => {
-    const urls = vi.mocked(fetch).mock.calls.map((call) => String(call[0]));
-    expect(urls.some((url) => url.includes('neust-buildings.json'))).toBe(true);
+  it('GETs the building list from the bundled file when the app opens', () => {
+    const request = http.expectOne('assets/neust-buildings.json');
+    expect(request.request.method).toBe('GET');
+    request.flush([{ no: 29, name: 'Science and Technology Bldg.', category: null, lat: null, lng: null }]);
+    expect(buildings()[0].name).toBe('Science and Technology Bldg.');
   });
 
   it('confirming a fix sets confirmedAt and keeps the status Resolved', () => {

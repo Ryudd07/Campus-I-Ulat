@@ -12,7 +12,8 @@ There is no server: reports are saved on the phone with Preferences, and a copy 
 | Find my location | Geolocation + Leaflet | New report → Use my current location (or pick the building from the list) | `new-report.page.ts` → `locate()`, `shared/pin-map.component.ts` |
 | Tap feedback | Haptics (Success double-tap) | Submit report; "Yes, it is fixed" | `new-report.page.ts` → `submit()`, `report-detail.page.ts` → `confirm()` |
 | Save data on the phone | Preferences | The student's reports (saved, confirmed, reopened) | `src/app/core/reports.service.ts` |
-| Send and fetch data | CapacitorHttp | GET the building list from this repository when the app opens; POST a copy of each new report to a test API | `reports.service.ts` → `loadBuildings()`, `postReport()` |
+| Load the building list | HttpClient (GET) | Reads `src/assets/neust-buildings.json` from inside the app when it opens; works offline | `reports.service.ts` → `loadBuildings()` |
+| Send a copy of each report | CapacitorHttp (POST) | Sends each new report to a public test API | `reports.service.ts` → `postReport()` |
 
 ## Setup
 
@@ -41,11 +42,11 @@ In Android Studio: **Build → Build App Bundle(s) / APK(s) → Build APK(s)**. 
 2. Tap a category on Home, add a photo, pin the location, describe the problem and tap **Submit report**.
 3. Follow your reports in **My reports**. A resolved report asks "Is it fixed?".
 
-The app needs internet for the map tiles (OpenStreetMap) and the test API (jsonplaceholder.typicode.com). Reports are still saved on the phone when offline; only the copy sent to the test API is skipped.
+The app needs internet for the map tiles (OpenStreetMap) and for sending the copy of each report to the test API (jsonplaceholder.typicode.com). Reports are still saved on the phone when offline; only the copy sent to the test API is skipped.
 
 ## Updating the buildings
 
-The app downloads the building list from [`src/app/core/neust-buildings.json`](src/app/core/neust-buildings.json) in this repository every time it opens. To add or fix a building, edit that file on GitHub (pencil icon) and commit: every installed app picks it up on its next launch, no new APK needed. GitHub can take up to about 5 minutes to serve the new version. If the download fails, the app uses the copy built into it.
+The 53 campus buildings are in [`src/assets/neust-buildings.json`](src/assets/neust-buildings.json), which is bundled inside the app and read with an `HttpClient` GET when the app opens, so it works without internet. After editing it, rebuild the app and the APK (see above).
 
 Each entry looks like this (`lat`/`lng` in decimal degrees, `null` until known):
 
@@ -62,9 +63,10 @@ src/app/
     reports.service.ts    Preferences + CapacitorHttp (all data)
     seed.ts               sample reports on first launch
     geo.ts                campus centre, buildings, distances
-    neust-buildings.json  the 53 campus buildings (lat/lng to fill in)
   pages/                  one folder per screen
   shared/                 report card, tags, tab bar, Leaflet maps
+src/assets/
+  neust-buildings.json    the 53 campus buildings (lat/lng to fill in)
 ```
 
 ## Tests
