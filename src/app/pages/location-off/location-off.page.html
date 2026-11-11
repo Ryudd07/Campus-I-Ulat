@@ -1,0 +1,47 @@
+<ion-header class="cc-header">
+  <ion-toolbar class="cc-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/report/new" icon="chevron-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pin the location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cc-page">
+    <app-pin-map
+      label="Map with a movable pin; your location is not available"
+      [pin]="pin()"
+      [selected]="form().buildingNo"
+      (pinChange)="movePin($event)"
+      (buildingPick)="pickBuilding($event)"
+    />
+
+    <section class="cc-notice off" role="status">
+      <div class="cc-notice__head off__head">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 3l18 18M12 21s-7-6.2-7-11a7 7 0 0 1 11.5-5.4M19 10c0 2-1.2 4.2-3 6.2" />
+        </svg>
+        <span>Location access is off</span>
+      </div>
+      <span class="off__body">
+        Campus Care cannot see where you are, so it cannot place the pin for you. Turn on location for Campus Care in
+        your phone's Settings, or drag the pin to the exact spot.
+      </span>
+    </section>
+
+    <app-building-field [building]="building()" [number]="form().buildingNo" />
+
+    <ion-button class="cc-btn cc-push-bottom" expand="block" (click)="done()">Pin on the map instead</ion-button>
+  </div>
+</ion-content>

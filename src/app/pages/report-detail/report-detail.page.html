@@ -1,0 +1,60 @@
+<ion-header class="cc-header">
+  <ion-toolbar class="cc-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/reports" icon="chevron-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Report details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cc-page">
+    @if (report(); as r) {
+    <div class="cc-card cc-card--roomy">
+      <span class="title">{{ r.title }}</span>
+      <span class="place">{{ place() }}</span>
+      <span class="desc">{{ r.description }}</span>
+      @if (r.photo) {
+      <img class="photo" [src]="r.photo" alt="Photo attached to this report" />
+      } @if (note() && r.status !== 'Resolved') {
+      <div class="cc-note">
+        <ion-icon name="chatbox-outline" aria-hidden="true"></ion-icon>
+        <span><strong>Campus services: </strong>{{ note() }}</span>
+      </div>
+      }
+    </div>
+
+    @if (r.status === 'Resolved' && !r.confirmedAt) {
+    <section class="cc-card cc-card--roomy fixed" aria-labelledby="fixed-title">
+      <h2 class="cc-h2" id="fixed-title">Is it fixed?</h2>
+      @if (note()) {
+      <div class="cc-note">
+        <ion-icon name="chatbox-outline" aria-hidden="true"></ion-icon>
+        <span><strong>Campus services: </strong>{{ note() }}</span>
+      </div>
+      }
+      <span class="cc-meta"
+        >Confirm to close this report. If it is still broken, we will move it back to In review.</span
+      >
+      <ion-button class="cc-btn cc-btn--compact" expand="block" (click)="confirm()">Yes, it is fixed</ion-button>
+      <ion-button class="cc-btn cc-btn--outline" expand="block" (click)="reopen()">Not fixed, reopen</ion-button>
+    </section>
+    }
+
+    <h2 class="cc-h2 progress-title">Progress</h2>
+    <ol class="cc-card cc-timeline">
+      @for (step of timeline(); track $index) {
+      <li [class.cc-timeline__pending]="!step.done">
+        <span class="cc-timeline__label">{{ step.label }}</span>
+        <span class="cc-timeline__when">{{ step.when }}</span>
+      </li>
+      }
+    </ol>
+    } @else {
+    <div class="cc-empty">
+      <h2>Report not found</h2>
+      <p>It may have been removed. Go back to see your reports.</p>
+    </div>
+    }
+  </div>
+</ion-content>

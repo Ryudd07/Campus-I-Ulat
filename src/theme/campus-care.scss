@@ -1,0 +1,910 @@
+// Campus Care shared styles.
+// Global so every page reuses one set of surfaces, tags and buttons
+// (and so page stylesheets stay well under the component style budget).
+// No drop shadows anywhere: surfaces are separated by borders and fills.
+
+html,
+body {
+  background: var(--cc-ground);
+}
+
+a {
+  color: var(--cc-blue);
+}
+
+/* ---------- Page layout ---------- */
+
+ion-content {
+  --background: var(--cc-ground);
+}
+
+.cc-page {
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 20px 32px;
+}
+
+.cc-page--tabbed {
+  padding-bottom: 24px;
+}
+
+.cc-push-bottom {
+  margin-top: auto;
+}
+
+.cc-toolbar {
+  --background: var(--cc-ground);
+  --border-width: 0;
+  --padding-start: 8px;
+  --padding-end: 20px;
+  --min-height: 60px;
+  padding-top: var(--ion-safe-area-top, 0);
+}
+
+.cc-toolbar ion-title {
+  padding-inline-start: 4px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: start;
+}
+
+.cc-toolbar ion-back-button {
+  --color: var(--cc-ink);
+  --icon-font-size: 26px;
+  --min-width: 44px;
+  --min-height: 44px;
+  --padding-start: 6px;
+  --padding-end: 6px;
+}
+
+ion-header.cc-header {
+  box-shadow: none;
+}
+
+ion-header.cc-header::after {
+  display: none;
+}
+
+/* ---------- Hero ---------- */
+
+.cc-hero {
+  margin: -8px -20px 0;
+  padding: calc(var(--ion-safe-area-top, 0px) + 40px) 20px 28px;
+  background: var(--cc-blue);
+  border-radius: 0 0 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+}
+
+.cc-hero--navy {
+  background: var(--cc-navy);
+  padding-bottom: 24px;
+  gap: 18px;
+}
+
+.cc-hero h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cc-hero p {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--cc-on-blue-muted);
+}
+
+.cc-hero--navy p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--cc-on-navy-muted);
+}
+
+/* ---------- Type ---------- */
+
+.cc-h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.cc-h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.cc-sub {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--cc-muted);
+}
+
+.cc-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cc-muted);
+}
+
+.cc-hint {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--cc-muted);
+}
+
+.cc-meta {
+  font-size: 13px;
+  color: var(--cc-muted);
+}
+
+.cc-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-text-link {
+  min-height: 44px;
+  margin: -14px 0;
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--cc-blue);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cc-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ---------- Focus ---------- */
+
+.cc-card:focus-visible,
+.cc-option:focus-visible,
+.cc-tile:focus-visible,
+.cc-row:focus-visible,
+.cc-text-link:focus-visible,
+.cc-btn.ion-focused,
+.cc-btn:focus-visible {
+  outline: var(--cc-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Cards ---------- */
+
+.cc-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  background: var(--cc-surface);
+  border: 1px solid var(--cc-line);
+  border-radius: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cc-card--roomy {
+  padding: 16px;
+}
+
+a.cc-card,
+button.cc-card {
+  cursor: pointer;
+  font: inherit;
+  text-align: start;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a.cc-card:active,
+button.cc-card:active {
+  background: var(--cc-surface-pressed);
+}
+
+.cc-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.cc-card__row--top {
+  align-items: flex-start;
+}
+
+.cc-card__title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cc-card--dashed {
+  border: 1.5px dashed var(--cc-line-strong);
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.cc-icon-box {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--cc-fill);
+  color: var(--cc-ink-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+/* ---------- Tags ---------- */
+
+.cc-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.cc-pill {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cc-pill--new {
+  background: var(--cc-new-bg);
+  color: var(--cc-new-ink);
+}
+.cc-pill--in-review {
+  background: var(--cc-review-bg);
+  color: var(--cc-review-ink);
+}
+.cc-pill--in-progress {
+  background: var(--cc-progress-bg);
+  color: var(--cc-progress-ink);
+}
+.cc-pill--resolved {
+  background: var(--cc-resolved-bg);
+  color: var(--cc-resolved-ink);
+}
+.cc-pill--urgent {
+  background: var(--cc-urgent-bg);
+  color: var(--cc-urgent-ink);
+}
+.cc-pill--medium {
+  background: var(--cc-medium-bg);
+  color: var(--cc-medium-ink);
+}
+.cc-pill--low {
+  background: var(--cc-low-bg);
+  color: var(--cc-low-ink);
+}
+.cc-pill--info {
+  background: var(--cc-blue-tint);
+  color: var(--cc-blue-ink);
+  font-weight: 700;
+}
+
+.cc-dot {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+}
+.cc-dot--new {
+  background: var(--cc-new-dot);
+}
+.cc-dot--in-review {
+  background: var(--cc-review-dot);
+}
+.cc-dot--in-progress {
+  background: var(--cc-progress-dot);
+}
+.cc-dot--resolved {
+  background: var(--cc-resolved-dot);
+}
+
+.cc-updated {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cc-blue);
+}
+
+.cc-updated::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cc-blue);
+}
+
+/* ---------- Buttons ---------- */
+
+ion-button.cc-btn {
+  --background: var(--cc-blue);
+  --background-activated: var(--cc-blue-pressed);
+  --background-activated-opacity: 1;
+  --background-focused: var(--cc-blue);
+  --background-focused-opacity: 1;
+  --background-hover: var(--cc-blue-pressed);
+  --background-hover-opacity: 1;
+  --color: #fff;
+  --border-radius: 14px;
+  --box-shadow: none;
+  --padding-start: 24px;
+  --padding-end: 24px;
+  min-height: 56px;
+  height: auto;
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+ion-button.cc-btn--navy {
+  --background: var(--cc-navy);
+  --background-activated: var(--cc-navy-pressed);
+  --background-focused: var(--cc-navy);
+  --background-hover: var(--cc-navy-pressed);
+}
+
+ion-button.cc-btn--outline {
+  --background: var(--cc-surface);
+  --background-activated: var(--cc-blue-wash);
+  --background-focused: var(--cc-surface);
+  --background-hover: var(--cc-blue-wash);
+  --color: var(--cc-blue);
+  --border-style: solid;
+  --border-width: 1.5px;
+  --border-color: var(--cc-blue);
+  min-height: 52px;
+  font-size: 16px;
+}
+
+ion-button.cc-btn--compact {
+  min-height: 52px;
+  font-size: 16px;
+}
+
+ion-button.cc-btn.button-disabled {
+  opacity: 1;
+  --background: var(--cc-disabled-fill);
+  --color: var(--cc-disabled-ink);
+}
+
+ion-button.cc-btn--outline.button-disabled {
+  --background: var(--cc-surface);
+  --border-color: var(--cc-disabled-fill);
+}
+
+ion-button.cc-btn ion-icon {
+  font-size: 22px;
+  margin-inline-end: 10px;
+}
+
+/* Location button: blue outline, turns green once found */
+.cc-locate {
+  min-height: 52px;
+  box-sizing: border-box;
+  border: 2px solid var(--cc-blue);
+  border-radius: 12px;
+  background: var(--cc-surface);
+  color: var(--cc-blue-ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.cc-locate:active {
+  background: var(--cc-blue-wash);
+}
+
+.cc-locate--found {
+  border-color: var(--cc-resolved-ink);
+  background: var(--cc-resolved-bg);
+  color: var(--cc-resolved-ink);
+}
+
+.cc-locate ion-icon,
+.cc-locate ion-spinner {
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+/* Segmented option (urgency, status, open/resolved) */
+.cc-options {
+  display: flex;
+  gap: 8px;
+}
+
+.cc-option {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 4px;
+  border: 1px solid var(--cc-line);
+  border-radius: 12px;
+  background: var(--cc-surface);
+  color: var(--cc-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cc-option:active {
+  background: var(--cc-option-pressed);
+}
+
+.cc-option[aria-pressed='true'] {
+  border: 2px solid var(--cc-blue);
+  background: var(--cc-blue-tint);
+  color: var(--cc-blue-ink);
+  font-weight: 700;
+}
+
+.cc-options--small .cc-option {
+  font-size: 13px;
+}
+
+/* Dashed add-photo button */
+.cc-dashed-btn {
+  min-height: 56px;
+  border: 1.5px dashed var(--cc-line-strong);
+  border-radius: 12px;
+  background: var(--cc-surface);
+  color: var(--cc-ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.cc-dashed-btn:active {
+  background: var(--cc-surface-pressed);
+}
+
+.cc-dashed-btn ion-icon {
+  font-size: 22px;
+}
+
+/* ---------- Form fields ---------- */
+
+ion-input.cc-input,
+ion-textarea.cc-input,
+ion-select.cc-input {
+  --background: var(--cc-surface);
+  --border-color: var(--cc-line);
+  --border-radius: 12px;
+  --border-width: 1px;
+  --highlight-color-focused: var(--cc-blue);
+  --padding-start: 14px;
+  --padding-end: 14px;
+  --placeholder-color: var(--cc-muted);
+  --placeholder-opacity: 1;
+  min-height: 48px;
+  font-size: 15px;
+  color: var(--cc-ink);
+}
+
+ion-textarea.cc-input {
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+ion-select.cc-input,
+ion-select.cc-filter {
+  width: 100%;
+}
+
+/* Push the chevron to the right edge, as in the design */
+ion-select.cc-input::part(container),
+ion-select.cc-filter::part(container) {
+  flex: 1;
+}
+
+ion-select.cc-filter {
+  --background: var(--cc-surface);
+  --border-color: var(--cc-line);
+  --border-radius: 99px;
+  --highlight-color-focused: var(--cc-blue);
+  --padding-start: 18px;
+  --padding-end: 16px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cc-ink);
+}
+
+ion-select.cc-filter.select-expanded {
+  --border-width: 2px;
+  --border-color: var(--cc-blue);
+}
+
+ion-select.cc-filter::part(icon),
+ion-select.cc-input::part(icon) {
+  color: var(--cc-muted);
+  opacity: 1;
+}
+
+.cc-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.cc-filters > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Building field and building rows */
+.cc-row {
+  min-height: 48px;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid var(--cc-line);
+  border-radius: 12px;
+  padding: 0 14px;
+  background: var(--cc-surface);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cc-ink);
+  font: inherit;
+  font-size: 15px;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cc-row:active {
+  background: var(--cc-surface-pressed);
+}
+
+.cc-row__chevron {
+  flex: none;
+  font-size: 20px;
+  color: var(--cc-muted);
+  margin-inline-start: auto;
+}
+
+.cc-badge {
+  min-width: 28px;
+  height: 24px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  flex: none;
+  border-radius: 8px;
+  background: var(--cc-blue-tint);
+  color: var(--cc-blue-ink);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Notes, notices, steps ---------- */
+
+.cc-note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--cc-ground);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--cc-ink);
+}
+
+.cc-note ion-icon {
+  flex: none;
+  margin-top: 1px;
+  font-size: 16px;
+  color: var(--cc-blue);
+}
+
+.cc-note strong {
+  font-weight: 600;
+}
+
+.cc-notice {
+  background: var(--cc-notice-bg);
+  border: 1px solid var(--cc-notice-line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.cc-notice__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cc-notice-ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.cc-notice__head ion-icon {
+  flex: none;
+  font-size: 20px;
+}
+
+.cc-steps {
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cc-steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.cc-step-num {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--cc-blue-tint);
+  color: var(--cc-blue-ink);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-step-num--solid {
+  background: var(--cc-blue);
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Progress timeline */
+.cc-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cc-timeline li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cc-timeline__label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cc-timeline__when {
+  font-size: 13px;
+  color: var(--cc-muted);
+}
+
+.cc-timeline__pending .cc-timeline__label {
+  color: var(--cc-muted);
+}
+
+/* ---------- Empty state ---------- */
+
+.cc-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 12px 48px;
+  text-align: center;
+}
+
+.cc-empty__icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--cc-fill);
+  color: var(--cc-ink-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.cc-empty h2 {
+  margin: 4px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cc-empty p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--cc-muted);
+}
+
+.cc-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Leaflet markers (divIcons) ---------- */
+
+.leaflet-container {
+  font-family: var(--ion-font-family);
+  background: var(--cc-map-ground);
+}
+
+.leaflet-marker-icon:focus-visible {
+  outline: var(--cc-focus-ring);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+.cc-map-building {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-map-building span {
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--cc-map-badge);
+  color: var(--cc-ink);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-map-building--on span {
+  width: 26px;
+  height: 26px;
+  background: var(--cc-blue);
+  color: #fff;
+}
+
+.cc-map-report {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-map-report span {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--cc-progress-dot);
+}
+
+.cc-map-report--new span {
+  background: var(--cc-new-dot);
+}
+.cc-map-report--in-review span {
+  background: var(--cc-review-dot);
+}
+.cc-map-report--resolved span {
+  background: var(--cc-resolved-dot);
+}
+
+.cc-map-report--on {
+  background: rgba(11, 95, 165, 0.18);
+}
+
+.cc-map-report--on span {
+  width: 26px;
+  height: 26px;
+  border-width: 4px;
+}
+
+.cc-map-pin {
+  display: flex;
+  justify-content: center;
+}
+
+/* Status legend, shown wherever report pins appear */
+.cc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cc-ink);
+}
+
+.cc-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Inline form errors (accessibility review, fix 3) */
+.cc-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #b42318;
+}
+
+.cc-error ion-icon {
+  flex: none;
+  font-size: 16px;
+}
+
+.cc-row--invalid,
+.cc-row--invalid:active {
+  border: 2px solid #b42318;
+}
+
+ion-textarea.cc-input--invalid,
+ion-input.cc-input--invalid {
+  --border-color: #b42318;
+  --border-width: 2px;
+}

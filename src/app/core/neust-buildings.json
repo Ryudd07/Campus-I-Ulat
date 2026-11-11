@@ -1,0 +1,374 @@
+[
+  {
+    "no": 1,
+    "name": "University Chapel",
+    "category": "Chapel, infirmary and student development",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 2,
+    "name": "University Mini Convention",
+    "category": "Canteens, gyms and halls",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 3,
+    "name": "Office of the Admission and Registration (OAR)",
+    "category": "Administration",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 4,
+    "name": "College of Engineering Old Bldg.",
+    "category": "Colleges",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 5,
+    "name": "Building 5",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 6,
+    "name": "Metal Casting Center (MCC)",
+    "category": "Science and technology",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 7,
+    "name": "COE Laboratory",
+    "category": "Science and technology",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 8,
+    "name": "Building 8",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 9,
+    "name": "Building 9",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 10,
+    "name": "Building 10",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 11,
+    "name": "Building 11",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 12,
+    "name": "Building 12",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 13,
+    "name": "Building 13",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 14,
+    "name": "Building 14",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 15,
+    "name": "Building 15",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 16,
+    "name": "Building 16",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 17,
+    "name": "Building 17",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 18,
+    "name": "Building 18",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 19,
+    "name": "Building 19",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 20,
+    "name": "Building 20",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 21,
+    "name": "Building 21",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 22,
+    "name": "Building 22",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 23,
+    "name": "Building 23",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 24,
+    "name": "Building 24",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 25,
+    "name": "Building 25",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 26,
+    "name": "Building 26",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 27,
+    "name": "Building 27",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 28,
+    "name": "Building 28",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 29,
+    "name": "Science and Technology Bldg.",
+    "shortName": "Science & Tech Bldg",
+    "category": "Science and technology",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 30,
+    "name": "Building 30",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 31,
+    "name": "Building 31",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 32,
+    "name": "Building 32",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 33,
+    "name": "Building 33",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 34,
+    "name": "Building 34",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 35,
+    "name": "Building 35",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 36,
+    "name": "Building 36",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 37,
+    "name": "Building 37",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 38,
+    "name": "Building 38",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 39,
+    "name": "Library",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 40,
+    "name": "Building 40",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 41,
+    "name": "Building 41",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 42,
+    "name": "Building 42",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 43,
+    "name": "Technohub",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 44,
+    "name": "Building 44",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 45,
+    "name": "Building 45",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 46,
+    "name": "Building 46",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 47,
+    "name": "Building 47",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 48,
+    "name": "Building 48",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 49,
+    "name": "Building 49",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 50,
+    "name": "Building 50",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 51,
+    "name": "University Hostel",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 52,
+    "name": "Building 52",
+    "category": null,
+    "lat": null,
+    "lng": null
+  },
+  {
+    "no": 53,
+    "name": "Building 53",
+    "category": null,
+    "lat": null,
+    "lng": null
+  }
+]

@@ -1,0 +1,47 @@
+.tiles-title {
+  margin: 0 0 -10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cc-tile {
+  min-height: 64px;
+  box-sizing: border-box;
+  border: 1px solid var(--cc-line);
+  border-radius: 14px;
+  background: var(--cc-surface);
+  color: var(--cc-ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 8px;
+  cursor: pointer;
+
+  ion-icon {
+    flex: none;
+    font-size: 22px;
+  }
+
+  &:active {
+    background: var(--cc-option-pressed);
+  }
+
+  &:focus-visible {
+    outline-color: #fff;
+  }
+}
+
+.recent-head {
+  margin-top: 8px;
+}

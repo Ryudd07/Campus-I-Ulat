@@ -1,0 +1,39 @@
+.reports {
+  padding-top: calc(var(--ion-safe-area-top, 0px) + 40px);
+}
+
+.how {
+  list-style: none;
+  margin: 8px 0 0;
+  width: 100%;
+  gap: 12px;
+  text-align: start;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.how__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  strong {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  span {
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--cc-muted);
+  }
+}
+
+.empty-tab {
+  text-align: center;
+  padding: 24px 0;
+}

@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="cc-page cc-page--tabbed">
+    <section class="cc-hero">
+      <div>
+        <h1>Campus Care</h1>
+        <p>
+          Spot something broken or unsafe on campus? Report it in a few taps, add a photo, and follow the repair from
+          start to finish.
+        </p>
+      </div>
+      <h2 class="tiles-title">Tap a category to start a report.</h2>
+      <div class="tiles">
+        @for (c of categories; track c.name) {
+        <button type="button" class="cc-tile" (click)="start(c.name)">
+          <ion-icon [name]="c.icon" aria-hidden="true"></ion-icon>
+          <span>{{ c.name }}</span>
+        </button>
+        }
+      </div>
+    </section>
+
+    <div class="cc-section-head recent-head">
+      <h2 class="cc-h2">Your recent reports</h2>
+      <a class="cc-text-link" routerLink="/reports">View all reports</a>
+    </div>
+
+    @for (r of recent(); track r.id) {
+    <app-report-card [report]="r" variant="home" />
+    } @empty {
+    <p class="cc-meta">Nothing reported yet. Tap a category above to start.</p>
+    }
+  </div>
+</ion-content>
+
+<app-tab-bar active="home" />

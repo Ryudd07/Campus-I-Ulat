@@ -1,2 +1,105 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+// Campus Care theme.
+// Colors, type and radii come from the Campus Care design canvas.
+// For more on theming Ionic, see https://ionicframework.com/docs/theming/
+
+:root {
+  /* Brand */
+  --cc-blue: #0b5fa5;
+  --cc-blue-pressed: #094c84;
+  --cc-blue-ink: #0b3d6b;
+  --cc-blue-tint: #d6e6f7;
+  --cc-blue-wash: #e6eff8;
+  --cc-navy: #0f2a43;
+  --cc-navy-pressed: #091b2b;
+  --cc-navy-raised: #1b3f5f;
+  --cc-on-blue-muted: #dcebfa;
+  --cc-on-navy-muted: #c9d8e6;
+
+  /* Neutrals */
+  --cc-ground: #f4f6f8;
+  --cc-surface: #ffffff;
+  --cc-surface-pressed: #eef2f6;
+  --cc-option-pressed: #e6ebf0;
+  --cc-ink: #14202b;
+  --cc-ink-2: #33414d;
+  --cc-muted: #4b5a68;
+  --cc-line: #d5dce3;
+  --cc-line-strong: #7a8997;
+  --cc-fill: #e3e8ed;
+  --cc-disabled-fill: #c9d6e2;
+  --cc-disabled-ink: #5f6e7c;
+
+  /* Notice */
+  --cc-notice-bg: #fff8ec;
+  --cc-notice-line: #f0d5a8;
+  --cc-notice-ink: #7a3e00;
+
+  /* Status tags: background / ink / map dot */
+  --cc-new-bg: #e8ddf7;
+  --cc-new-ink: #3f1d6b;
+  --cc-new-dot: #7a3fb8;
+  --cc-review-bg: #fde8c8;
+  --cc-review-ink: #7a3e00;
+  --cc-review-dot: #c2570a;
+  --cc-progress-bg: #d6e6f7;
+  --cc-progress-ink: #0b3d6b;
+  --cc-progress-dot: #0b5fa5;
+  --cc-resolved-bg: #d9f0e1;
+  --cc-resolved-ink: #14532d;
+  --cc-resolved-dot: #14532d;
+
+  /* Urgency tags */
+  --cc-urgent-bg: #fbd9d3;
+  --cc-urgent-ink: #8a1c0f;
+  --cc-medium-bg: #fde8c8;
+  --cc-medium-ink: #7a3e00;
+  --cc-low-bg: #e3e8ed;
+  --cc-low-ink: #33414d;
+
+  /* Map */
+  --cc-map-ground: #dde8df;
+  --cc-map-block: #c4d1c8;
+  --cc-map-block-alt: #b9cdbd;
+  --cc-map-badge: #e0ae62;
+
+  --cc-focus-ring: 3px solid var(--cc-blue);
+
+  /* Ionic */
+  --ion-font-family: 'Inter', system-ui, sans-serif;
+  --ion-background-color: var(--cc-ground);
+  --ion-background-color-rgb: 244, 246, 248;
+  --ion-text-color: var(--cc-ink);
+  --ion-text-color-rgb: 20, 32, 43;
+  --ion-toolbar-background: var(--cc-ground);
+  --ion-toolbar-color: var(--cc-ink);
+  --ion-toolbar-border-color: transparent;
+  --ion-tab-bar-background: var(--cc-surface);
+
+  --ion-color-primary: #0b5fa5;
+  --ion-color-primary-rgb: 11, 95, 165;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #094c84;
+  --ion-color-primary-tint: #2370b0;
+
+  --ion-color-secondary: #0f2a43;
+  --ion-color-secondary-rgb: 15, 42, 67;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #091b2b;
+  --ion-color-secondary-tint: #273f56;
+
+  --ion-color-success: #14532d;
+  --ion-color-success-rgb: 20, 83, 45;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #124928;
+  --ion-color-success-tint: #2c6442;
+
+  --ion-color-medium: #4b5a68;
+  --ion-color-medium-rgb: 75, 90, 104;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #424f5c;
+  --ion-color-medium-tint: #5d6b77;
+}

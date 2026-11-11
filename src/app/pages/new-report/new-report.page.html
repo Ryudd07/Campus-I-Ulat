@@ -1,0 +1,110 @@
+<ion-header class="cc-header">
+  <ion-toolbar class="cc-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" icon="chevron-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>New report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cc-page">
+    <div class="cc-field-group">
+      <label class="cc-label" for="category">Category</label>
+      <ion-select
+        justify="space-between"
+        id="category"
+        class="cc-input"
+        fill="outline"
+        interface="popover"
+        aria-label="Category"
+        toggleIcon="chevron-down-outline"
+        [value]="form().category"
+        (ionChange)="setCategory($event.detail.value)"
+      >
+        @for (c of categories; track c) {
+        <ion-select-option [value]="c">{{ c }}</ion-select-option>
+        }
+      </ion-select>
+    </div>
+
+    @if (form().photo; as photo) {
+    <div class="photo">
+      <img [src]="photo" alt="Your photo of the issue" />
+      <button type="button" class="photo__remove" aria-label="Remove photo" (click)="removePhoto()">
+        <ion-icon name="close-circle" aria-hidden="true"></ion-icon>
+      </button>
+    </div>
+    } @else {
+    <button type="button" class="cc-dashed-btn" (click)="addPhoto()">
+      <ion-icon name="camera-outline" aria-hidden="true"></ion-icon>
+      <span>Add photo</span>
+    </button>
+    }
+
+    <div class="location">
+      <span class="cc-label">Pin the location</span>
+      <app-pin-map
+        [pin]="pin()"
+        [selected]="form().buildingNo"
+        [located]="form().located"
+        [accuracy]="form().accuracy"
+        (pinChange)="movePin($event)"
+        (buildingPick)="pickBuilding($event)"
+      />
+      <span class="cc-hint">Drag the pin, tap a numbered building, or use your current location.</span>
+      <button
+        type="button"
+        class="cc-locate"
+        [class.cc-locate--found]="form().located"
+        [disabled]="locating()"
+        (click)="locate()"
+      >
+        @if (locating()) {
+        <ion-spinner name="crescent" aria-hidden="true"></ion-spinner>
+        <span>Finding your location…</span>
+        } @else {
+        <ion-icon name="locate-outline" aria-hidden="true"></ion-icon>
+        <span>{{ form().located ? locLabel() : 'Use my current location' }}</span>
+        }
+      </button>
+      <app-building-field
+        class="building"
+        [building]="building()"
+        [number]="form().buildingNo"
+        [invalid]="buildingError()"
+      />
+      @if (buildingError()) {
+      <p class="cc-error" id="building-error" role="alert">
+        <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
+        Choose the building where the problem is.
+      </p>
+      }
+    </div>
+
+    <div class="cc-field-group">
+      <label class="cc-label" for="description">What happened?</label>
+      <ion-textarea
+        id="description"
+        class="cc-input"
+        fill="outline"
+        aria-label="What happened?"
+        placeholder="Describe the problem"
+        [rows]="3"
+        [value]="form().description"
+        [attr.aria-invalid]="descriptionError()"
+        [attr.aria-describedby]="descriptionError() ? 'description-error' : null"
+        [class.cc-input--invalid]="descriptionError()"
+        (ionInput)="setDescription($event.detail.value)"
+      ></ion-textarea>
+      @if (descriptionError()) {
+      <p class="cc-error" id="description-error" role="alert">
+        <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>
+        Say what happened, in a few words.
+      </p>
+      }
+    </div>
+
+    <ion-button class="cc-btn cc-push-bottom" expand="block" (click)="submit()"> Submit report </ion-button>
+  </div>
+</ion-content>

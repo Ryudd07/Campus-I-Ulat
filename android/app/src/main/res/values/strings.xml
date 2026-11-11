@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Campus Care</string>
+    <string name="title_activity_main">Campus Care</string>
+    <string name="package_name">ph.edu.neust.campuscare</string>
+    <string name="custom_url_scheme">ph.edu.neust.campuscare</string>
+</resources>

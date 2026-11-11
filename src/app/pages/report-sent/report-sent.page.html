@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="cc-page sent">
+    <div class="sent__head">
+      <div class="sent__icon"><ion-icon name="checkmark" aria-hidden="true"></ion-icon></div>
+      <h1 class="cc-h1">Report sent</h1>
+      <p>Campus services has your report. We will notify you when its status changes.</p>
+    </div>
+
+    @if (report(); as r) {
+    <div class="cc-card">
+      <div class="cc-tags">
+        <app-tag [value]="r.status" />
+        <app-tag [value]="r.urgency" />
+      </div>
+      <span class="cc-card__title">{{ r.title }}</span>
+      <span class="cc-meta">{{ place() }} · Sent just now</span>
+    </div>
+    }
+
+    <h2 class="cc-h2 next">What happens next</h2>
+    <ol class="cc-card cc-steps">
+      <li>
+        <span class="cc-step-num" aria-hidden="true">1</span>
+        Campus services reviews your report, usually within 2 working days.
+      </li>
+      <li>
+        <span class="cc-step-num" aria-hidden="true">2</span>
+        You get a notification whenever the status changes, so there is no need to check back.
+      </li>
+      <li>
+        <span class="cc-step-num" aria-hidden="true">3</span>
+        When it is resolved, confirm it is fixed or reopen it.
+      </li>
+    </ol>
+
+    <div class="cc-push-bottom actions">
+      @if (report(); as r) {
+      <ion-button class="cc-btn" expand="block" [routerLink]="['/reports', r.id]" routerDirection="root">
+        View report
+      </ion-button>
+      }
+      <ion-button class="cc-btn cc-btn--outline" expand="block" routerLink="/home" routerDirection="root">
+        Back to home
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

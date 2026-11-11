@@ -1,0 +1,163 @@
+import { Component, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
+import { Geolocation } from '@capacitor/geolocation';
+import { Haptics, NotificationType } from '@capacitor/haptics';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonSelect,
+  IonSelectOption,
+  IonSpinner,
+  IonTextarea,
+  IonTitle,
+  IonToolbar,
+  ToastController,
+} from '@ionic/angular';
+
+import { findBuilding, nearestBuilding } from '../../core/geo';
+import { CATEGORIES, type LatLng } from '../../core/models';
+import { ReportsService } from '../../core/reports.service';
+import { BuildingFieldComponent } from '../../shared/building-field.component';
+import { PinMapComponent } from '../../shared/pin-map.component';
+
+@Component({
+  selector: 'app-new-report',
+  templateUrl: 'new-report.page.html',
+  styleUrls: ['new-report.page.scss'],
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonContent,
+    IonIcon,
+    IonButton,
+    IonSelect,
+    IonSelectOption,
+    IonTextarea,
+    IonSpinner,
+    PinMapComponent,
+    BuildingFieldComponent,
+  ],
+})
+export class NewReportPage {
+  store = inject(ReportsService);
+  router = inject(Router);
+  toastCtrl = inject(ToastController);
+
+  categories = CATEGORIES;
+  form = this.store.form;
+  locating = signal(false);
+  tried = signal(false); // errors only show after the first Submit
+
+  building = computed(() => findBuilding(this.form().buildingNo));
+  pin = computed(() => ({ lat: this.form().lat, lng: this.form().lng }));
+  buildingError = computed(() => this.tried() && this.form().buildingNo === null);
+  descriptionError = computed(() => this.tried() && this.form().description.trim() === '');
+
+  locLabel = computed(() => {
+    const near = nearestBuilding(this.pin());
+    if (near) return 'Location found, ' + Math.round(near.metres) + ' m from Bldg ' + near.building.no;
+    return 'Location found';
+  });
+
+  // ---------- Form fields ----------
+
+  setCategory(value: any) {
+    this.store.updateForm({ category: value });
+  }
+
+  setDescription(value: any) {
+    this.store.updateForm({ description: value });
+  }
+
+  // ---------- Map ----------
+
+  // The pin was dragged or the map was tapped
+  movePin(point: LatLng) {
+    const near = nearestBuilding(point);
+    const buildingNo = near && near.metres < 80 ? near.building.no : this.form().buildingNo;
+    this.store.updateForm({ lat: point.lat, lng: point.lng, located: false, buildingNo: buildingNo });
+  }
+
+  // A numbered building was tapped
+  pickBuilding(no: number) {
+    const b = findBuilding(no)!;
+    this.store.updateForm({ buildingNo: no, lat: b.lat ?? this.form().lat, lng: b.lng ?? this.form().lng });
+  }
+
+  // ---------- Camera ----------
+
+  async addPhoto() {
+    const photo = await Camera.getPhoto({
+      source: CameraSource.Prompt, // asks: take a photo or choose from the gallery
+      resultType: CameraResultType.Base64,
+      quality: 50,
+      width: 800,
+      webUseInput: true, // in the browser, open a file picker
+    });
+    this.store.updateForm({ photo: 'data:image/jpeg;base64,' + photo.base64String });
+  }
+
+  removePhoto() {
+    this.store.updateForm({ photo: undefined });
+  }
+
+  // ---------- Geolocation ----------
+
+  async locate() {
+    // check the permission first
+    let permission = await Geolocation.checkPermissions();
+    if (permission.location === 'prompt' && Capacitor.isNativePlatform()) {
+      permission = await Geolocation.requestPermissions();
+    }
+    if (permission.location === 'denied') {
+      this.router.navigateByUrl('/report/location'); // "Location access is off" screen
+      return;
+    }
+
+    this.locating.set(true);
+    Geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 10000 })
+      .then((position) => {
+        const point = { lat: position.coords.latitude, lng: position.coords.longitude };
+        const near = nearestBuilding(point);
+        this.store.updateForm({
+          lat: point.lat,
+          lng: point.lng,
+          accuracy: position.coords.accuracy,
+          located: true,
+          buildingNo: near ? near.building.no : this.form().buildingNo,
+        });
+        this.locating.set(false);
+      })
+      .catch(() => {
+        // GPS off or no signal: let the student pin it by hand
+        this.locating.set(false);
+        this.showToast('Could not find your location. Drag the pin instead.');
+      });
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastCtrl.create({ message: message, duration: 2500 });
+    toast.present();
+  }
+
+  // ---------- Buttons ----------
+
+  async submit() {
+    this.tried.set(true);
+    if (this.buildingError() || this.descriptionError()) return;
+
+    await Haptics.notification({ type: NotificationType.Success }); // two quick taps, unlike a keyboard tap
+    const report = this.store.submitReport(); // saves on the phone and POSTs a copy
+    this.tried.set(false);
+    this.router.navigate(['/report/sent', report.id], { replaceUrl: true });
+  }
+}

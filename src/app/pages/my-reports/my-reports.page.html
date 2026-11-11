@@ -1,0 +1,50 @@
+<ion-content>
+  <div class="cc-page cc-page--tabbed reports">
+    <div>
+      <h1 class="cc-h1">My reports</h1>
+      <p class="cc-sub">Everything you have reported, newest first.</p>
+    </div>
+
+    <div class="cc-options" role="group" aria-label="Show reports">
+      <button type="button" class="cc-option" [attr.aria-pressed]="tab() === 'open'" (click)="tab.set('open')">
+        Open ({{ open().length }})
+      </button>
+      <button type="button" class="cc-option" [attr.aria-pressed]="tab() === 'resolved'" (click)="tab.set('resolved')">
+        Resolved ({{ resolved().length }})
+      </button>
+    </div>
+
+    @if (none()) {
+    <div class="cc-empty">
+      <div class="cc-empty__icon"><ion-icon name="clipboard-outline" aria-hidden="true"></ion-icon></div>
+      <h2>No reports yet</h2>
+      <p>When you report something broken or unsafe, you can follow every step of the repair here.</p>
+      <ol class="cc-card how" aria-label="How reporting works">
+        <li>
+          <span class="cc-step-num cc-step-num--solid" aria-hidden="true">1</span>
+          <span class="how__text"><strong>Report</strong><span>Pick a category, pin the spot, add a photo.</span></span>
+        </li>
+        <li>
+          <span class="cc-step-num cc-step-num--solid" aria-hidden="true">2</span>
+          <span class="how__text"
+            ><strong>Campus services reviews</strong><span>They check it and assign the repair.</span></span
+          >
+        </li>
+        <li>
+          <span class="cc-step-num cc-step-num--solid" aria-hidden="true">3</span>
+          <span class="how__text"
+            ><strong>You get updates</strong><span>Follow progress here until it is fixed.</span></span
+          >
+        </li>
+      </ol>
+      <ion-button class="cc-btn" routerLink="/report/new">Report an issue</ion-button>
+    </div>
+    } @else { @for (r of shown(); track r.id) {
+    <app-report-card [report]="r" variant="list" />
+    } @empty {
+    <p class="cc-meta empty-tab">{{ tab() === 'open' ? 'Nothing open right now.' : 'Nothing resolved yet.' }}</p>
+    } }
+  </div>
+</ion-content>
+
+<app-tab-bar active="reports" />

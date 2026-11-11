@@ -13,6 +13,9 @@ module.exports = defineConfig([
     extends: [angular.configs.tsRecommended],
     processor: angular.processInlineTemplates,
     rules: {
+      // Keep methods short and readable like the class samples (no forced return types or 'any' bans)
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@angular-eslint/directive-selector': [
         'error',
         {

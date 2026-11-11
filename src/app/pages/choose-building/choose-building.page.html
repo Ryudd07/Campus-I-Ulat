@@ -1,0 +1,73 @@
+<ion-header class="cc-header">
+  <ion-toolbar class="cc-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/report/new" icon="chevron-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Choose building</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cc-page list">
+    <ion-searchbar
+      class="search"
+      placeholder="Search by name or number"
+      aria-label="Search buildings"
+      searchIcon="search-outline"
+      [value]="query()"
+      [debounce]="100"
+      (ionInput)="query.set($event.detail.value ?? '')"
+    ></ion-searchbar>
+
+    <ion-select
+      justify="space-between"
+      class="cc-filter"
+      fill="outline"
+      shape="round"
+      interface="popover"
+      aria-label="Filter by category"
+      toggleIcon="chevron-down-outline"
+      [value]="category()"
+      (ionChange)="setCategory($event.detail.value)"
+    >
+      <ion-select-option [value]="ALL">{{ ALL }}</ion-select-option>
+      @for (c of categories; track c) {
+      <ion-select-option [value]="c">{{ c }}</ion-select-option>
+      }
+    </ion-select>
+
+    @if (closest().length) {
+    <h2 class="cc-label group">Closest to your pin</h2>
+    @for (b of closest(); track b.no) {
+    <ng-container *ngTemplateOutlet="row; context: { $implicit: b, distance: b.distance }" />
+    } }
+
+    <h2 class="cc-label group group--all">All buildings, 1 to 53</h2>
+    @for (b of all(); track b.no) {
+    <ng-container *ngTemplateOutlet="row; context: { $implicit: b }" />
+    } @empty {
+    <p class="cc-meta">No buildings match. Try another name or number.</p>
+    }
+  </div>
+</ion-content>
+
+<ng-template #row let-b let-distance="distance">
+  <button
+    type="button"
+    class="cc-row building"
+    [class.building--on]="b.no === selected()"
+    [attr.aria-pressed]="b.no === selected()"
+    (click)="choose(b)"
+  >
+    <span class="building__num">{{ b.no }}</span>
+    <span class="building__text">
+      <span class="building__name">{{ b.name }}</span>
+      @if (subline(b, distance); as sub) {
+      <span class="building__sub">{{ sub }}</span>
+      }
+    </span>
+    @if (b.no === selected()) {
+    <ion-icon class="building__check" name="checkmark" role="img" aria-label="Selected"></ion-icon>
+    }
+  </button>
+</ng-template>
