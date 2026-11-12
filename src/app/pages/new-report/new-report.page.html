@@ -36,10 +36,16 @@
       </button>
     </div>
     } @else {
-    <button type="button" class="cc-dashed-btn" (click)="addPhoto()">
-      <ion-icon name="camera-outline" aria-hidden="true"></ion-icon>
-      <span>Add photo</span>
-    </button>
+    <div class="photo-buttons">
+      <button type="button" class="cc-dashed-btn" (click)="takePhoto()">
+        <ion-icon name="camera-outline" aria-hidden="true"></ion-icon>
+        <span>Take photo</span>
+      </button>
+      <button type="button" class="cc-dashed-btn" (click)="choosePhoto()">
+        <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
+        <span>Choose from gallery</span>
+      </button>
+    </div>
     }
 
     <div class="location">

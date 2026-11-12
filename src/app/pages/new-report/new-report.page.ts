@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Camera } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { Haptics, NotificationType } from '@capacitor/haptics';
@@ -68,7 +68,7 @@ export class NewReportPage {
     return 'Location found';
   });
 
-  // The closest building on the map to a point (null until coordinates are filled in)
+  // The closest building on the map to a point
   nearest(point: LatLng) {
     let best: { no: number; metres: number } | null = null;
     for (const b of this.buildings.onMap()) {
@@ -104,15 +104,29 @@ export class NewReportPage {
 
   // ---------- Camera ----------
 
-  async addPhoto() {
-    const photo = await Camera.getPhoto({
-      source: CameraSource.Prompt, // asks: take a photo or choose from the gallery
-      resultType: CameraResultType.Base64,
+  async takePhoto() {
+    const photo = await Camera.takePhoto({
       quality: 50,
-      width: 800,
-      webUseInput: true, // in the browser, open a file picker
+      targetWidth: 800,
+      targetHeight: 800, // fits the photo inside 800 x 800
     });
-    this.store.updateForm({ photo: 'data:image/jpeg;base64,' + photo.base64String });
+    this.savePhoto(photo.webPath!);
+  }
+
+  async choosePhoto() {
+    const photos = await Camera.chooseFromGallery({
+      quality: 50,
+      targetWidth: 800,
+      targetHeight: 800,
+    });
+    this.savePhoto(photos.results[0].webPath!);
+  }
+
+  async savePhoto(webPath: string) {
+    const file = await fetch(webPath).then((res) => res.blob());
+    const reader = new FileReader();
+    reader.onload = () => this.store.updateForm({ photo: reader.result as string });
+    reader.readAsDataURL(file);
   }
 
   removePhoto() {
@@ -147,7 +161,7 @@ export class NewReportPage {
         this.locating.set(false);
       })
       .catch(() => {
-        // GPS off or no signal: let the student pin it by hand
+        //lets the student pin it by hand
         this.locating.set(false);
         this.showToast('Could not find your location. Drag the pin instead.');
       });
@@ -164,7 +178,7 @@ export class NewReportPage {
     this.tried.set(true);
     if (this.buildingError() || this.descriptionError()) return;
 
-    await Haptics.notification({ type: NotificationType.Success }); // two quick taps, unlike a keyboard tap
+    await Haptics.notification({ type: NotificationType.Success });
     const report = this.store.submitReport(); // saves on the phone and POSTs a copy
     this.tried.set(false);
     this.router.navigate(['/report/sent', report.id], { replaceUrl: true });

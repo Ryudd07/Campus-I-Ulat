@@ -8,6 +8,17 @@
   margin-top: 4px;
 }
 
+.photo-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+
+  .cc-dashed-btn {
+    padding: 0 8px;
+    text-align: center;
+  }
+}
+
 .photo {
   position: relative;
   border-radius: 12px;

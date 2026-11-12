@@ -5,10 +5,10 @@ import { Preferences } from '@capacitor/preferences';
 import { BuildingsService } from './buildings.service';
 import type { Category, Report, ReportForm } from './models';
 
-// Free public test API (it accepts POSTs but does not keep them)
+// Free public test API
 const API_URL = 'https://jsonplaceholder.typicode.com/posts';
 
-// Middle of the NEUST-Sumacab campus (from the building coordinates). The pin starts here on New report.
+// Map starting point
 const CAMPUS_CENTER = { lat: 15.4473, lng: 120.93963 };
 
 // Starting values for a new report
@@ -16,13 +16,12 @@ function emptyForm(category: Category = 'Maintenance'): ReportForm {
   return { category: category, buildingNo: null, description: '', ...CAMPUS_CENTER, located: false };
 }
 
-// A time some hours before now, as text (for the sample reports)
+// time for sample reports
 function hoursAgo(hours: number) {
   return new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
 }
 
-// Sample reports from the design, saved on first launch.
-// One in each status, because nothing in the app moves a report along.
+// Sample reports from the design
 function sampleReports(): Report[] {
   return [
     {
@@ -129,14 +128,12 @@ function sampleReports(): Report[] {
 export class ReportsService {
   buildings = inject(BuildingsService);
   reports = signal<Report[]>([]); // the student's reports (saved in Preferences)
-  form = signal<ReportForm>(emptyForm()); // what is filled in on New report
+  form = signal<ReportForm>(emptyForm());
 
-  // newest first
   myReports = computed(() => [...this.reports()].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
 
   // ---------- Preferences ----------
 
-  // Runs once when the app opens
   async init() {
     const saved = await Preferences.get({ key: 'reports' });
     if (saved.value) {
@@ -148,7 +145,7 @@ export class ReportsService {
   }
 
   saveReports() {
-    // keep photos on the 10 newest reports only, so storage does not fill up
+    // keeps 10 newest photos only
     const keep = this.myReports()
       .filter((r) => r.photo)
       .slice(0, 10)
@@ -176,13 +173,13 @@ export class ReportsService {
     this.form.set({ ...this.form(), ...changes });
   }
 
-  // Picks a building and moves the pin onto it (if its coordinates are known)
+  // Picks a building and moves pin
   chooseBuilding(no: number) {
     const b = this.buildings.find(no);
     this.updateForm({ buildingNo: no, lat: b?.lat ?? this.form().lat, lng: b?.lng ?? this.form().lng, located: false });
   }
 
-  // Turns the form into a report, saves it on the phone, then sends a copy
+  // Turns the form into a report
   submitReport() {
     const f = this.form();
     const now = new Date().toISOString();
@@ -210,14 +207,14 @@ export class ReportsService {
     return report;
   }
 
-  // ---------- "Is it fixed?" ----------
+  // ---------- Fixed Status ----------
 
-  // "Yes, it is fixed": the status stays Resolved
+  // fixed
   confirmFixed(id: string) {
     this.updateReport(id, { confirmedAt: new Date().toISOString() });
   }
 
-  // "Not fixed, reopen": back to In review
+  // not fixed
   reopen(id: string) {
     const now = new Date().toISOString();
     const history = [
@@ -229,8 +226,7 @@ export class ReportsService {
 
   // ---------- Network ----------
 
-  // POST a copy of the report (without the photo, to keep the request small).
-  // The report is already saved on the phone, so a failed request loses nothing.
+  // POST a copy of the report
   postReport(report: Report) {
     CapacitorHttp.post({
       url: API_URL,
