@@ -1,16 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
-import { statusClass } from '../core/format';
-import type { Status, Urgency } from '../core/models';
-
-/** Status or urgency tag. Reference only, never tappable. */
+// Status or urgency tag, e.g. "In progress" → class cc-pill--in-progress
 @Component({
   selector: 'app-tag',
-  template: `<span class="cc-pill" [class]="'cc-pill cc-pill--' + modifier()">{{ value() }}</span>`,
+  template: `<span [class]="'cc-pill cc-pill--' + value().toLowerCase().replace(' ', '-')">{{ value() }}</span>`,
   host: { style: 'display: contents' },
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagComponent {
-  readonly value = input.required<Status | Urgency | string>();
-  readonly modifier = computed(() => statusClass(this.value()));
+  value = input.required<string>();
 }

@@ -68,12 +68,7 @@
         <span>{{ form().located ? locLabel() : 'Use my current location' }}</span>
         }
       </button>
-      <app-building-field
-        class="building"
-        [building]="building()"
-        [number]="form().buildingNo"
-        [invalid]="buildingError()"
-      />
+      <app-building-field class="building" [buildingNo]="form().buildingNo" [invalid]="buildingError()" />
       @if (buildingError()) {
       <p class="cc-error" id="building-error" role="alert">
         <ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>

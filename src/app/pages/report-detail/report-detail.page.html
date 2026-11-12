@@ -44,9 +44,9 @@
     <h2 class="cc-h2 progress-title">Progress</h2>
     <ol class="cc-card cc-timeline">
       @for (step of timeline(); track $index) {
-      <li [class.cc-timeline__pending]="!step.done">
+      <li [class.cc-timeline__pending]="!step.at">
         <span class="cc-timeline__label">{{ step.label }}</span>
-        <span class="cc-timeline__when">{{ step.when }}</span>
+        <span class="cc-timeline__when">{{ step.at ? (step.at | date: 'EEE, MMM d, h:mm a') : 'Pending' }}</span>
       </li>
       }
     </ol>

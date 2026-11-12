@@ -14,11 +14,19 @@ import {
   NavController,
 } from '@ionic/angular';
 
-import { buildings, distanceMetres, hasCoords, roundMetres } from '../../core/geo';
-import { BUILDING_CATEGORIES, type Building } from '../../core/models';
-import { ReportsService } from '../../core/reports.service';
+import { BuildingsService } from '../../services/buildings.service';
+import type { Building } from '../../services/models';
+import { ReportsService } from '../../services/reports.service';
 
 const ALL = 'All categories';
+const BUILDING_CATEGORIES = [
+  'Administration',
+  'Canteens, gyms and halls',
+  'Sports and cultural',
+  'Chapel, infirmary and student development',
+  'Science and technology',
+  'Colleges',
+];
 
 @Component({
   selector: 'app-choose-building',
@@ -40,6 +48,7 @@ const ALL = 'All categories';
 })
 export class ChooseBuildingPage {
   store = inject(ReportsService);
+  buildings = inject(BuildingsService);
   nav = inject(NavController);
 
   ALL = ALL;
@@ -51,39 +60,34 @@ export class ChooseBuildingPage {
   // buildings that match the search box and the category filter
   matches = computed(() => {
     const q = this.query().toLowerCase();
-    return buildings().filter(
-      (b) =>
-        (this.category() === ALL || b.category === this.category()) &&
-        (b.name.toLowerCase().includes(q) || String(b.no) === q),
-    );
+    return this.buildings
+      .list()
+      .filter(
+        (b) =>
+          (this.category() === ALL || b.category === this.category()) &&
+          (b.name.toLowerCase().includes(q) || String(b.no) === q),
+      );
   });
 
-  // the 3 buildings nearest the pin (only buildings with coordinates)
+  // the 3 buildings on the map nearest the pin
   closest = computed(() => {
     const pin = this.store.form();
-    return this.matches()
-      .filter(hasCoords)
-      .map((b) => ({ ...b, distance: roundMetres(distanceMetres(pin, { lat: b.lat, lng: b.lng })) }))
+    return this.buildings
+      .onMap()
+      .filter((b) => this.matches().includes(b))
+      .map((b) => ({ ...b, distance: Math.round(this.buildings.distance(pin, { lat: b.lat!, lng: b.lng! })) }))
       .sort((a, b) => a.distance - b.distance)
       .slice(0, 3);
   });
 
-  all = computed(() => this.matches());
-
   choose(b: Building) {
-    this.store.updateForm({
-      buildingNo: b.no,
-      lat: b.lat ?? this.store.form().lat,
-      lng: b.lng ?? this.store.form().lng,
-    });
+    this.store.chooseBuilding(b.no);
     this.nav.back();
   }
 
-  setCategory(value: string) {
-    this.category.set(value);
-  }
-
+  // "Science and technology · 40 m away"
   subline(b: Building, distance?: number) {
-    return [b.category, distance ? distance + ' m away' : ''].filter(Boolean).join(' · ');
+    if (distance !== undefined) return (b.category ?? 'Building') + ' · ' + distance + ' m away';
+    return b.category;
   }
 }

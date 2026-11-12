@@ -1,4 +1,4 @@
-// Domain types for Campus Care, following the data model in the build guide.
+// Data shapes shared by the services and pages (from the build guide's data model).
 
 export const CATEGORIES = ['Maintenance', 'Safety', 'IT and network', 'Grounds'] as const;
 export type Category = (typeof CATEGORIES)[number];
@@ -6,19 +6,7 @@ export type Category = (typeof CATEGORIES)[number];
 export const STATUSES = ['New', 'In review', 'In progress', 'Resolved'] as const;
 export type Status = (typeof STATUSES)[number];
 
-/** Shown in this order on the urgency buttons. */
-export const URGENCIES = ['Low', 'Medium', 'Urgent'] as const;
-export type Urgency = (typeof URGENCIES)[number];
-
-export const BUILDING_CATEGORIES = [
-  'Administration',
-  'Canteens, gyms and halls',
-  'Sports and cultural',
-  'Chapel, infirmary and student development',
-  'Science and technology',
-  'Colleges',
-] as const;
-export type BuildingCategory = (typeof BUILDING_CATEGORIES)[number];
+export type Urgency = 'Low' | 'Medium' | 'Urgent';
 
 export interface LatLng {
   lat: number;
@@ -31,7 +19,7 @@ export interface Building {
   name: string;
   /** Shorter name for compact places, e.g. "Science & Tech Bldg". */
   shortName?: string;
-  category: BuildingCategory | null;
+  category: string | null;
   lat: number | null;
   lng: number | null;
 }
@@ -57,7 +45,6 @@ export interface Report {
   createdAt: string; // ISO
   updatedAt: string; // ISO, changes on any status or note edit
   history: HistoryEntry[];
-  reopened?: boolean;
   confirmedAt?: string; // set when the student taps "Yes, it is fixed"
 }
 

@@ -2,373 +2,399 @@
   {
     "no": 1,
     "name": "University Chapel",
+    "shortName": "Chapel",
     "category": "Chapel, infirmary and student development",
-    "lat": null,
-    "lng": null
+    "lat": 15.445301,
+    "lng": 120.941199
   },
   {
     "no": 2,
     "name": "University Mini Convention",
+    "shortName": "Mini Con",
     "category": "Canteens, gyms and halls",
-    "lat": null,
-    "lng": null
+    "lat": 15.44545,
+    "lng": 120.940863
   },
   {
     "no": 3,
     "name": "Office of the Admission and Registration (OAR)",
+    "shortName": "OAR",
     "category": "Administration",
-    "lat": null,
-    "lng": null
+    "lat": 15.446757,
+    "lng": 120.940385
   },
   {
     "no": 4,
     "name": "College of Engineering Old Bldg.",
+    "shortName": "COE Old",
     "category": "Colleges",
-    "lat": null,
-    "lng": null
+    "lat": 15.447197,
+    "lng": 120.940305
   },
   {
     "no": 5,
-    "name": "Building 5",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Metal Innovations Center (MIC)",
+    "shortName": "MIC",
+    "category": "Science and technology",
+    "lat": 15.44759,
+    "lng": 120.94004
   },
   {
     "no": 6,
     "name": "Metal Casting Center (MCC)",
+    "shortName": "MCC",
     "category": "Science and technology",
-    "lat": null,
-    "lng": null
+    "lat": 15.44784,
+    "lng": 120.940305
   },
   {
     "no": 7,
     "name": "COE Laboratory",
+    "shortName": "COE Laboratory",
     "category": "Science and technology",
-    "lat": null,
-    "lng": null
+    "lat": 15.447649,
+    "lng": 120.940624
   },
   {
     "no": 8,
-    "name": "Building 8",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "COE Student Center",
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.447696,
+    "lng": 120.940847
   },
   {
     "no": 9,
-    "name": "Building 9",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Engineering New Bldg.; COE Seminar Hall",
+    "shortName": "COE New",
+    "category": "Colleges",
+    "lat": 15.448042,
+    "lng": 120.940994
   },
   {
     "no": 10,
-    "name": "Building 10",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Open Gym",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.447768,
+    "lng": 120.941142
   },
   {
     "no": 11,
-    "name": "Building 11",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Supply and Property Management",
+    "shortName": "Supply",
+    "category": "Administration",
+    "lat": 15.447425,
+    "lng": 120.940914
   },
   {
     "no": 12,
-    "name": "Building 12",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Swimming Pool",
+    "category": "Sports and cultural",
+    "lat": 15.4483,
+    "lng": 120.941649
   },
   {
     "no": 13,
-    "name": "Building 13",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Closed Gym",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.448634,
+    "lng": 120.941099
   },
   {
     "no": 14,
-    "name": "Building 14",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "OJT and Student Publication Bldg.",
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.448056,
+    "lng": 120.940016
   },
   {
     "no": 15,
-    "name": "Building 15",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Student Government (USG) Office",
+    "shortName": "USG",
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.445917,
+    "lng": 120.939618
   },
   {
     "no": 16,
-    "name": "Building 16",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Canteen",
+    "shortName": "COE Canteen",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.447843,
+    "lng": 120.939811
   },
   {
     "no": 17,
-    "name": "Building 17",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Business Center / Marketing",
+    "shortName": "Marketing",
+    "category": "Administration",
+    "lat": 15.445691,
+    "lng": 120.939541
   },
   {
     "no": 18,
-    "name": "Building 18",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Football Field / Oval",
+    "shortName": "Oval",
+    "category": "Sports and cultural",
+    "lat": 15.448675,
+    "lng": 120.939787
   },
   {
     "no": 19,
-    "name": "Building 19",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Grandstand",
+    "category": "Sports and cultural",
+    "lat": 15.449332,
+    "lng": 120.939361
   },
   {
     "no": 20,
-    "name": "Building 20",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Physical Fitness Center",
+    "shortName": "IPE",
+    "category": "Sports and cultural",
+    "lat": 15.449132,
+    "lng": 120.940858
   },
   {
     "no": 21,
-    "name": "Building 21",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Information and Communications Technology",
+    "shortName": "CICT",
+    "category": "Colleges",
+    "lat": 15.449328,
+    "lng": 120.940417
   },
   {
     "no": 22,
-    "name": "Building 22",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Athletics Center",
+    "category": "Sports and cultural",
+    "lat": 15.449761,
+    "lng": 120.939503
   },
   {
     "no": 23,
-    "name": "Building 23",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Cultural Center",
+    "category": "Sports and cultural",
+    "lat": 15.449632,
+    "lng": 120.939798
   },
   {
     "no": 24,
-    "name": "Building 24",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Amphitheater",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.450002,
+    "lng": 120.939192
   },
   {
     "no": 25,
-    "name": "Building 25",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Ortiz Hall",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.450265,
+    "lng": 120.938817
   },
   {
     "no": 26,
-    "name": "Building 26",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Criminology Bldg B.",
+    "category": "Colleges",
+    "lat": 15.449185,
+    "lng": 120.93836
   },
   {
     "no": 27,
-    "name": "Building 27",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Criminology Bldg A.",
+    "category": "Colleges",
+    "lat": 15.44888,
+    "lng": 120.938071
   },
   {
     "no": 28,
-    "name": "Building 28",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Criminology Laboratory",
+    "category": "Science and technology",
+    "lat": 15.448536,
+    "lng": 120.937923
   },
   {
     "no": 29,
     "name": "Science and Technology Bldg.",
     "shortName": "Science & Tech Bldg",
     "category": "Science and technology",
-    "lat": null,
-    "lng": null
+    "lat": 15.448278,
+    "lng": 120.937803
   },
   {
     "no": 30,
-    "name": "Building 30",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "MRF Bldg.",
+    "category": "Administration",
+    "lat": 15.448011,
+    "lng": 120.93761
   },
   {
     "no": 31,
-    "name": "Building 31",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Graduate School Bldg.",
+    "category": "Colleges",
+    "lat": 15.448559,
+    "lng": 120.938467
   },
   {
     "no": 32,
-    "name": "Building 32",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Nieto Hall",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.44819,
+    "lng": 120.938621
   },
   {
     "no": 33,
-    "name": "Building 33",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Hospitality and Tourism Management Bldg.",
+    "shortName": "HTM",
+    "category": "Colleges",
+    "lat": 15.447812,
+    "lng": 120.938548
   },
   {
     "no": 34,
-    "name": "Building 34",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Gender and Development Center",
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.44752,
+    "lng": 120.938004
   },
   {
     "no": 35,
-    "name": "Building 35",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Quadrangle",
+    "shortName": "Quad",
+    "category": "Sports and cultural",
+    "lat": 15.447347,
+    "lng": 120.939234
   },
   {
     "no": 36,
-    "name": "Building 36",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Education",
+    "shortName": "COED",
+    "category": "Colleges",
+    "lat": 15.447466,
+    "lng": 120.938632
   },
   {
     "no": 37,
-    "name": "Building 37",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Cyber Center (UCC)",
+    "shortName": "UCC",
+    "category": "Administration",
+    "lat": 15.447215,
+    "lng": 120.938886
   },
   {
     "no": 38,
-    "name": "Building 38",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Infirmary",
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.446879,
+    "lng": 120.93917
   },
   {
     "no": 39,
-    "name": "Library",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Library / Cherry Umali Hall",
+    "shortName": "Library",
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.446778,
+    "lng": 120.938859
   },
   {
     "no": 40,
-    "name": "Building 40",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Canteen 2",
+    "shortName": "COED Canteen",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.447083,
+    "lng": 120.93817
   },
   {
     "no": 41,
-    "name": "Building 41",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Quality Assurance Bldg.",
+    "category": "Administration",
+    "lat": 15.446631,
+    "lng": 120.938387
   },
   {
     "no": 42,
-    "name": "Building 42",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Robotics and Data Center",
+    "category": "Science and technology",
+    "lat": 15.446551,
+    "lng": 120.93946
   },
   {
     "no": 43,
     "name": "Technohub",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "category": "Science and technology",
+    "lat": 15.446269,
+    "lng": 120.939645
   },
   {
     "no": 44,
-    "name": "Building 44",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Architecture",
+    "shortName": "Arki",
+    "category": "Colleges",
+    "lat": 15.446318,
+    "lng": 120.939283
   },
   {
     "no": 45,
-    "name": "Building 45",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "Administration Bldg.; Cashier",
+    "shortName": "Cashier",
+    "category": "Administration",
+    "lat": 15.445793,
+    "lng": 120.939474
   },
   {
     "no": 46,
-    "name": "Building 46",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Museum",
+    "category": "Administration",
+    "lat": 15.445227,
+    "lng": 120.9396
   },
   {
     "no": 47,
-    "name": "Building 47",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Management and Business Technology",
+    "shortName": "CMBT",
+    "category": "Colleges",
+    "lat": 15.446191,
+    "lng": 120.938659
   },
   {
     "no": 48,
-    "name": "Building 48",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "CMBT Gym",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.445855,
+    "lng": 120.938757
   },
   {
     "no": 49,
-    "name": "Building 49",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "College of Public Administration and Disaster Management",
+    "shortName": "CPADM",
+    "category": "Colleges",
+    "lat": 15.445501,
+    "lng": 120.938865
   },
   {
     "no": 50,
-    "name": "Building 50",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "University Cafe",
+    "shortName": "Cafeteria",
+    "category": "Canteens, gyms and halls",
+    "lat": 15.445082,
+    "lng": 120.939401
   },
   {
     "no": 51,
     "name": "University Hostel",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.444953,
+    "lng": 120.939146
   },
   {
     "no": 52,
-    "name": "Building 52",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "NSTP Bldg.",
+    "category": "Chapel, infirmary and student development",
+    "lat": 15.444795,
+    "lng": 120.939838
   },
   {
     "no": 53,
-    "name": "Building 53",
-    "category": null,
-    "lat": null,
-    "lng": null
+    "name": "General Service Bldg.",
+    "category": "Administration",
+    "lat": 15.444338,
+    "lng": 120.940541
   }
 ]

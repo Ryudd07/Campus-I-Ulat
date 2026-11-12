@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonButton, IonContent, IonIcon, IonRouterLink } from '@ionic/angular';
 
-import { ReportsService } from '../../core/reports.service';
+import { ReportsService } from '../../services/reports.service';
 import { ReportCardComponent } from '../../shared/report-card.component';
 import { TabBarComponent } from '../../shared/tab-bar.component';
 

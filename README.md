@@ -1,4 +1,4 @@
-# Campus Care
+# Campus I-Ulat
 
 A small Ionic + Angular + Capacitor app for NEUST-Sumacab students to report broken or unsafe things on campus (maintenance, safety, IT and network, grounds) and follow each repair until it is fixed.
 

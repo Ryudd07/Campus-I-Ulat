@@ -2,11 +2,18 @@ import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IonContent, IonIcon } from '@ionic/angular';
 
-import { CATEGORY_ICONS } from '../../core/icons';
-import { CATEGORIES, type Category } from '../../core/models';
-import { ReportsService } from '../../core/reports.service';
+import { CATEGORIES, type Category } from '../../services/models';
+import { ReportsService } from '../../services/reports.service';
 import { ReportCardComponent } from '../../shared/report-card.component';
 import { TabBarComponent } from '../../shared/tab-bar.component';
+
+// Icon shown on each category tile
+const CATEGORY_ICONS: Record<Category, string> = {
+  Maintenance: 'construct-outline',
+  Safety: 'shield-outline',
+  'IT and network': 'wifi-outline',
+  Grounds: 'leaf-outline',
+};
 
 @Component({
   selector: 'app-home',
@@ -15,13 +22,14 @@ import { TabBarComponent } from '../../shared/tab-bar.component';
   imports: [RouterLink, IonContent, IonIcon, ReportCardComponent, TabBarComponent],
 })
 export class HomePage {
-  protected readonly store = inject(ReportsService);
-  private readonly router = inject(Router);
+  store = inject(ReportsService);
+  router = inject(Router);
 
-  protected readonly categories = CATEGORIES.map((c) => ({ name: c, icon: CATEGORY_ICONS[c] }));
-  protected readonly recent = computed(() => this.store.myReports().slice(0, 3));
+  categories = CATEGORIES.map((c) => ({ name: c, icon: CATEGORY_ICONS[c] }));
+  recent = computed(() => this.store.myReports().slice(0, 3)); // the 3 newest
 
-  protected start(category: Category): void {
+  // A category tile was tapped: start a new report with it
+  start(category: Category) {
     this.store.startReport(category);
     this.router.navigateByUrl('/report/new');
   }

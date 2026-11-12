@@ -20,9 +20,9 @@ import {
   ToastController,
 } from '@ionic/angular';
 
-import { findBuilding, nearestBuilding } from '../../core/geo';
-import { CATEGORIES, type LatLng } from '../../core/models';
-import { ReportsService } from '../../core/reports.service';
+import { BuildingsService } from '../../services/buildings.service';
+import { CATEGORIES, type LatLng } from '../../services/models';
+import { ReportsService } from '../../services/reports.service';
 import { BuildingFieldComponent } from '../../shared/building-field.component';
 import { PinMapComponent } from '../../shared/pin-map.component';
 
@@ -49,6 +49,7 @@ import { PinMapComponent } from '../../shared/pin-map.component';
 })
 export class NewReportPage {
   store = inject(ReportsService);
+  buildings = inject(BuildingsService);
   router = inject(Router);
   toastCtrl = inject(ToastController);
 
@@ -57,16 +58,25 @@ export class NewReportPage {
   locating = signal(false);
   tried = signal(false); // errors only show after the first Submit
 
-  building = computed(() => findBuilding(this.form().buildingNo));
   pin = computed(() => ({ lat: this.form().lat, lng: this.form().lng }));
   buildingError = computed(() => this.tried() && this.form().buildingNo === null);
   descriptionError = computed(() => this.tried() && this.form().description.trim() === '');
 
   locLabel = computed(() => {
-    const near = nearestBuilding(this.pin());
-    if (near) return 'Location found, ' + Math.round(near.metres) + ' m from Bldg ' + near.building.no;
+    const near = this.nearest(this.pin());
+    if (near) return 'Location found, ' + Math.round(near.metres) + ' m from Bldg ' + near.no;
     return 'Location found';
   });
+
+  // The closest building on the map to a point (null until coordinates are filled in)
+  nearest(point: LatLng) {
+    let best: { no: number; metres: number } | null = null;
+    for (const b of this.buildings.onMap()) {
+      const metres = this.buildings.distance(point, { lat: b.lat!, lng: b.lng! });
+      if (!best || metres < best.metres) best = { no: b.no, metres: metres };
+    }
+    return best;
+  }
 
   // ---------- Form fields ----------
 
@@ -82,15 +92,14 @@ export class NewReportPage {
 
   // The pin was dragged or the map was tapped
   movePin(point: LatLng) {
-    const near = nearestBuilding(point);
-    const buildingNo = near && near.metres < 80 ? near.building.no : this.form().buildingNo;
+    const near = this.nearest(point);
+    const buildingNo = near && near.metres < 80 ? near.no : this.form().buildingNo;
     this.store.updateForm({ lat: point.lat, lng: point.lng, located: false, buildingNo: buildingNo });
   }
 
   // A numbered building was tapped
   pickBuilding(no: number) {
-    const b = findBuilding(no)!;
-    this.store.updateForm({ buildingNo: no, lat: b.lat ?? this.form().lat, lng: b.lng ?? this.form().lng });
+    this.store.chooseBuilding(no);
   }
 
   // ---------- Camera ----------
@@ -127,13 +136,13 @@ export class NewReportPage {
     Geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 10000 })
       .then((position) => {
         const point = { lat: position.coords.latitude, lng: position.coords.longitude };
-        const near = nearestBuilding(point);
+        const near = this.nearest(point);
         this.store.updateForm({
           lat: point.lat,
           lng: point.lng,
           accuracy: position.coords.accuracy,
           located: true,
-          buildingNo: near ? near.building.no : this.form().buildingNo,
+          buildingNo: near ? near.no : this.form().buildingNo,
         });
         this.locating.set(false);
       })

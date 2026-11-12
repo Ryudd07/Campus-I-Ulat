@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonIcon } from '@ionic/angular';
 
-import type { Building } from '../core/models';
+import { BuildingsService } from '../services/buildings.service';
 
-/** Building field: number badge plus name. Opens the building list. */
+// Building field: number badge plus name. Tapping it opens the building list.
 @Component({
   selector: 'app-building-field',
   imports: [RouterLink, IonIcon],
@@ -21,9 +21,6 @@ import type { Building } from '../core/models';
         @if (building(); as b) {
           <span class="cc-badge">{{ b.no }}</span>
           <span>{{ b.name }}</span>
-        } @else if (number() !== null) {
-          <span class="cc-badge">{{ number() }}</span>
-          <span>Building {{ number() }}</span>
         } @else {
           <span class="placeholder">Select a building</span>
         }
@@ -36,10 +33,11 @@ import type { Building } from '../core/models';
       color: var(--cc-muted);
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BuildingFieldComponent {
-  readonly building = input<Building | undefined>();
-  readonly number = input<number | null>(null);
-  readonly invalid = input(false);
+  buildings = inject(BuildingsService);
+  buildingNo = input<number | null>(null);
+  invalid = input(false);
+
+  building = computed(() => this.buildings.find(this.buildingNo()));
 }

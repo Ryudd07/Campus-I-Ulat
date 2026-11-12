@@ -35,12 +35,12 @@
         <span>Location access is off</span>
       </div>
       <span class="off__body">
-        Campus Care cannot see where you are, so it cannot place the pin for you. Turn on location for Campus Care in
-        your phone's Settings, or drag the pin to the exact spot.
+        Campus I-Ulat cannot see where you are, so it cannot place the pin for you. Turn on location for Campus I-Ulat
+        in your phone's Settings, or drag the pin to the exact spot.
       </span>
     </section>
 
-    <app-building-field [building]="building()" [number]="form().buildingNo" />
+    <app-building-field [buildingNo]="form().buildingNo" />
 
     <ion-button class="cc-btn cc-push-bottom" expand="block" (click)="done()">Pin on the map instead</ion-button>
   </div>

@@ -13,7 +13,7 @@
         <app-tag [value]="r.urgency" />
       </div>
       <span class="cc-card__title">{{ r.title }}</span>
-      <span class="cc-meta">{{ place() }} · Sent just now</span>
+      <span class="cc-meta">{{ buildings.placeShort(r) }} · {{ r.category }} · Sent just now</span>
     </div>
     }
 

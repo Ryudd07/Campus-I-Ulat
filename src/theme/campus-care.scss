@@ -1,4 +1,4 @@
-// Campus Care shared styles.
+// Campus I-Ulat shared styles.
 // Global so every page reuses one set of surfaces, tags and buttons
 // (and so page stylesheets stay well under the component style budget).
 // No drop shadows anywhere: surfaces are separated by borders and fills.
@@ -81,12 +81,6 @@ ion-header.cc-header::after {
   color: #fff;
 }
 
-.cc-hero--navy {
-  background: var(--cc-navy);
-  padding-bottom: 24px;
-  gap: 18px;
-}
-
 .cc-hero h1 {
   margin: 0;
   font-size: 28px;
@@ -99,12 +93,6 @@ ion-header.cc-header::after {
   font-size: 15px;
   line-height: 1.5;
   color: var(--cc-on-blue-muted);
-}
-
-.cc-hero--navy p {
-  margin-top: 6px;
-  font-size: 14px;
-  color: var(--cc-on-navy-muted);
 }
 
 /* ---------- Type ---------- */
@@ -234,27 +222,6 @@ button.cc-card:active {
   font-weight: 600;
 }
 
-.cc-card--dashed {
-  border: 1.5px dashed var(--cc-line-strong);
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-}
-
-.cc-icon-box {
-  width: 40px;
-  height: 40px;
-  flex: none;
-  border-radius: 12px;
-  background: var(--cc-fill);
-  color: var(--cc-ink-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
-
 /* ---------- Tags ---------- */
 
 .cc-tags {
@@ -301,30 +268,6 @@ button.cc-card:active {
   background: var(--cc-low-bg);
   color: var(--cc-low-ink);
 }
-.cc-pill--info {
-  background: var(--cc-blue-tint);
-  color: var(--cc-blue-ink);
-  font-weight: 700;
-}
-
-.cc-dot {
-  width: 10px;
-  height: 10px;
-  flex: none;
-  border-radius: 50%;
-}
-.cc-dot--new {
-  background: var(--cc-new-dot);
-}
-.cc-dot--in-review {
-  background: var(--cc-review-dot);
-}
-.cc-dot--in-progress {
-  background: var(--cc-progress-dot);
-}
-.cc-dot--resolved {
-  background: var(--cc-resolved-dot);
-}
 
 .cc-updated {
   display: flex;
@@ -365,13 +308,6 @@ ion-button.cc-btn {
   font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
-}
-
-ion-button.cc-btn--navy {
-  --background: var(--cc-navy);
-  --background-activated: var(--cc-navy-pressed);
-  --background-focused: var(--cc-navy);
-  --background-hover: var(--cc-navy-pressed);
 }
 
 ion-button.cc-btn--outline {
@@ -453,7 +389,7 @@ ion-button.cc-btn ion-icon {
   flex: 1;
   min-height: 44px;
   padding: 0 4px;
-  border: 1px solid var(--cc-line);
+  border: 1px solid var(--cc-line-strong);
   border-radius: 12px;
   background: var(--cc-surface);
   color: var(--cc-ink);
@@ -472,10 +408,6 @@ ion-button.cc-btn ion-icon {
   background: var(--cc-blue-tint);
   color: var(--cc-blue-ink);
   font-weight: 700;
-}
-
-.cc-options--small .cc-option {
-  font-size: 13px;
 }
 
 /* Dashed add-photo button */
@@ -509,7 +441,7 @@ ion-input.cc-input,
 ion-textarea.cc-input,
 ion-select.cc-input {
   --background: var(--cc-surface);
-  --border-color: var(--cc-line);
+  --border-color: var(--cc-line-strong);
   --border-radius: 12px;
   --border-width: 1px;
   --highlight-color-focused: var(--cc-blue);
@@ -540,7 +472,7 @@ ion-select.cc-filter::part(container) {
 
 ion-select.cc-filter {
   --background: var(--cc-surface);
-  --border-color: var(--cc-line);
+  --border-color: var(--cc-line-strong);
   --border-radius: 99px;
   --highlight-color-focused: var(--cc-blue);
   --padding-start: 18px;
@@ -562,22 +494,12 @@ ion-select.cc-input::part(icon) {
   opacity: 1;
 }
 
-.cc-filters {
-  display: flex;
-  gap: 10px;
-}
-
-.cc-filters > * {
-  flex: 1;
-  min-width: 0;
-}
-
 /* Building field and building rows */
 .cc-row {
   min-height: 48px;
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid var(--cc-line);
+  border: 1px solid var(--cc-line-strong);
   border-radius: 12px;
   padding: 0 14px;
   background: var(--cc-surface);
@@ -775,15 +697,6 @@ ion-select.cc-input::part(icon) {
   color: var(--cc-muted);
 }
 
-.cc-visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
 /* ---------- Leaflet markers (divIcons) ---------- */
 
 .leaflet-container {
@@ -825,61 +738,9 @@ ion-select.cc-input::part(icon) {
   color: #fff;
 }
 
-.cc-map-report {
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cc-map-report span {
-  width: 20px;
-  height: 20px;
-  box-sizing: border-box;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  background: var(--cc-progress-dot);
-}
-
-.cc-map-report--new span {
-  background: var(--cc-new-dot);
-}
-.cc-map-report--in-review span {
-  background: var(--cc-review-dot);
-}
-.cc-map-report--resolved span {
-  background: var(--cc-resolved-dot);
-}
-
-.cc-map-report--on {
-  background: rgba(11, 95, 165, 0.18);
-}
-
-.cc-map-report--on span {
-  width: 26px;
-  height: 26px;
-  border-width: 4px;
-}
-
 .cc-map-pin {
   display: flex;
   justify-content: center;
-}
-
-/* Status legend, shown wherever report pins appear */
-.cc-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--cc-ink);
-}
-
-.cc-legend span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 
 /* Inline form errors (accessibility review, fix 3) */
@@ -905,6 +766,18 @@ ion-select.cc-input::part(icon) {
 
 ion-textarea.cc-input--invalid,
 ion-input.cc-input--invalid {
+  --border-color: #b42318;
+  --border-width: 2px;
+}
+
+/* ion-textarea's own outline style is more specific than the rules above,
+   so repeat them with its fill-outline class (Ionic's focus colour still wins while typing) */
+ion-textarea.cc-input.textarea-fill-outline {
+  --border-color: var(--cc-line-strong);
+  --border-radius: 12px;
+}
+
+ion-textarea.cc-input--invalid.textarea-fill-outline {
   --border-color: #b42318;
   --border-width: 2px;
 }

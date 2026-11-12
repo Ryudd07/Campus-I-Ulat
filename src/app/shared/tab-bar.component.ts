@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonFooter, IonIcon, IonRouterLinkWithHref } from '@ionic/angular';
 
-/** Student bottom bar: Home, the raised report button, My reports. */
+// Bottom bar: Home, the raised report button, My reports
 @Component({
   selector: 'app-tab-bar',
   imports: [IonFooter, IonIcon, RouterLink, IonRouterLinkWithHref],
@@ -99,8 +99,7 @@ import { IonFooter, IonIcon, IonRouterLinkWithHref } from '@ionic/angular';
       outline-offset: 2px;
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabBarComponent {
-  readonly active = input<'home' | 'reports' | null>(null);
+  active = input<'home' | 'reports' | null>(null); // which tab is highlighted
 }

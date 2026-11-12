@@ -28,7 +28,7 @@
       aria-label="Filter by category"
       toggleIcon="chevron-down-outline"
       [value]="category()"
-      (ionChange)="setCategory($event.detail.value)"
+      (ionChange)="category.set($event.detail.value)"
     >
       <ion-select-option [value]="ALL">{{ ALL }}</ion-select-option>
       @for (c of categories; track c) {
@@ -43,7 +43,7 @@
     } }
 
     <h2 class="cc-label group group--all">All buildings, 1 to 53</h2>
-    @for (b of all(); track b.no) {
+    @for (b of matches(); track b.no) {
     <ng-container *ngTemplateOutlet="row; context: { $implicit: b }" />
     } @empty {
     <p class="cc-meta">No buildings match. Try another name or number.</p>

@@ -6,8 +6,7 @@ import { provideRouter } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
 import { provideIonicAngular } from '@ionic/angular';
 
-import { registerIcons } from '../../core/icons';
-import { ReportsService } from '../../core/reports.service';
+import { ReportsService } from '../../services/reports.service';
 
 import { HomePage } from './home.page';
 
@@ -15,7 +14,6 @@ describe('HomePage', () => {
   let fixture: ComponentFixture<HomePage>;
 
   beforeEach(async () => {
-    registerIcons();
     await Preferences.clear();
     await TestBed.configureTestingModule({
       imports: [HomePage],

@@ -74,3 +74,8 @@ Thumbs.db
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Prototype APKs are shared through Drive, not the repository
+*.apk
+# Office lock files (created while a document is open)
+~$*

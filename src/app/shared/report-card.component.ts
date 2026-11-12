@@ -1,47 +1,39 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonIcon } from '@ionic/angular';
 
-import { ago, placeLong, placeShort } from '../core/format';
-import type { Report } from '../core/models';
+import { BuildingsService } from '../services/buildings.service';
+import type { Report } from '../services/models';
 
 import { TagComponent } from './tag.component';
 
-/**
- * Tappable report row.
- * - `home`: compact card on Home
- * - `list`: My reports, with the latest campus services note
- */
+// Tappable report row: "home" is the short card on Home, "list" is the fuller card on My reports
 @Component({
   selector: 'app-report-card',
   imports: [RouterLink, IonIcon, TagComponent],
   template: `
-    @let r = report();
-    <a class="cc-card" [routerLink]="['/reports', r.id]">
+    <a class="cc-card" [routerLink]="['/reports', report().id]">
+      <div class="cc-card__row">
+        <span class="cc-card__title">{{ report().title }}</span>
+        <app-tag [value]="report().status" />
+      </div>
+
       @if (variant() === 'home') {
-        <div class="cc-card__row">
-          <span class="cc-card__title">{{ r.title }}</span>
-          <app-tag [value]="r.status" />
-        </div>
-        <span class="cc-meta">{{ place() }}</span>
+        <span class="cc-meta">{{ buildings.placeLong(report()) }}</span>
       } @else {
-        <div class="cc-card__row cc-card__row--top">
-          <span class="cc-card__title">{{ r.title }}</span>
-          <app-tag [value]="r.status" />
-        </div>
-        <span class="cc-meta">{{ shortPlace() }} · {{ r.category }}</span>
-        @if (note() && r.status !== 'Resolved') {
+        <span class="cc-meta">{{ buildings.placeShort(report()) }} · {{ report().category }}</span>
+        @if (note() && report().status !== 'Resolved') {
           <div class="cc-note">
             <ion-icon name="chatbox-outline" aria-hidden="true"></ion-icon>
             <span><strong>Campus services: </strong>{{ note() }}</span>
           </div>
         }
-        @if (r.status === 'Resolved' && !r.confirmedAt) {
+        @if (report().status === 'Resolved' && !report().confirmedAt) {
           <span class="cc-updated">Is it fixed? Tap to confirm</span>
-        } @else if (r.status === 'Resolved') {
-          <span class="cc-hint">Closed {{ ago(r.updatedAt) }}</span>
+        } @else if (report().status === 'Resolved') {
+          <span class="cc-hint">Closed {{ ago(report().updatedAt) }}</span>
         } @else {
-          <span class="cc-hint">Reported {{ ago(r.createdAt) }}</span>
+          <span class="cc-hint">Reported {{ ago(report().createdAt) }}</span>
         }
       }
     </a>
@@ -51,15 +43,20 @@ import { TagComponent } from './tag.component';
       display: block;
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReportCardComponent {
-  readonly report = input.required<Report>();
-  readonly variant = input<'home' | 'list'>('list');
+  buildings = inject(BuildingsService);
+  report = input.required<Report>();
+  variant = input<'home' | 'list'>('list');
 
-  protected readonly ago = ago;
-  protected readonly place = computed(() => placeLong(this.report()));
-  protected readonly shortPlace = computed(() => placeShort(this.report()));
-  /** Latest note from campus services in the history. */
-  protected readonly note = computed(() => [...this.report().history].reverse().find((h) => h.note)?.note);
+  // latest note from campus services
+  note = computed(() => [...this.report().history].reverse().find((h) => h.note)?.note);
+
+  // "today", "yesterday" or "3 days ago"
+  ago(time: string) {
+    const days = Math.floor((Date.now() - new Date(time).getTime()) / (24 * 60 * 60 * 1000));
+    if (days === 0) return 'today';
+    if (days === 1) return 'yesterday';
+    return days + ' days ago';
+  }
 }
